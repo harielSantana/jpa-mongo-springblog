@@ -1,19 +1,29 @@
 package com.fiap.springblog.model;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @Document
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Artigo {
     @Id
-    private String codigo;
-    private String titulo;
-    private LocalDateTime data;
-    private String texto;
-    private String url;
-    private Integer status;
+    @EqualsAndHashCode.Include
+    public String codigo;
+    public String titulo;
+    public LocalDateTime data;
+    public String texto;
+    public String url;
+    public Integer status;
+
+    @DBRef
+    public Autor autor;
 }
