@@ -15,6 +15,8 @@ public class ArtigoServiceImpl implements ArtigoService {
 
     @Autowired
     private ArtigoRepository artigoRepository;
+
+    @Autowired
     private AutorRepository autorRepository;
 
     @Override
@@ -33,7 +35,7 @@ public class ArtigoServiceImpl implements ArtigoService {
     public Artigo criar(Artigo artigo) {
 
         //se o autor existe
-        if (artigo.getAutor().getCodigo() != null) {
+        if (artigo.getAutor() != null) {
             //recuperar o autor
             Autor autor = this.autorRepository.findById(artigo.getAutor().getCodigo())
                     .orElseThrow(()-> new IllegalArgumentException("Autor inexistente!!"));
